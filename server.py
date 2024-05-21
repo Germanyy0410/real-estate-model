@@ -1,11 +1,12 @@
 from flask import Flask, request, jsonify # type: ignore
 import joblib # type: ignore
+import os
 
 app = Flask(__name__)
 
-@app.route('/estate/estimate-price', methods=['POST'])
+@app.route('/api/estate/estimate-price', methods=['POST'])
 def predict():
-    model = joblib.load('sample.pkl')
+    model = joblib.load(str(os.getcwd()) + '/model.pkl')
     data = request.json['inputData']
 
     result = model.predict(data)
