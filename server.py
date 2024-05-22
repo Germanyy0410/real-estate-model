@@ -8,11 +8,18 @@ CORS(app, supports_credentials=True, origins=['http://localhost:5173'])
 
 @app.route('/api/estate/estimate-price', methods=['POST'])
 def predict():
-    model = joblib.load(str(os.getcwd()) + '/model.pkl')
-    data = request.json['inputData']
+    try:
+        model = joblib.load(os.path.join(os.getcwd(), 'model.pkl'))
+        data = request.json['inputData']
+        result = model.predict(data)
+        return jsonify({'output': result.tolist()})
+    except:
+        return jsonify({'status': 'Error occured while loading model!'})
 
-    result = model.predict(data)
-    return jsonify({'output': result.tolist()})
+@app.route('/api/status', methods=['GET'])
+def status():
+    return jsonify({'status': 'Server is running'})
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0')
+    port = int(os.environ.get('PORT', 5000))
+    app.run(debug=True, host='0.0.0.0', port=port)
