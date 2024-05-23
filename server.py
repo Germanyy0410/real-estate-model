@@ -4,7 +4,7 @@ import os
 from flask_cors import CORS # type: ignore
 
 app = Flask(__name__)
-CORS(app, supports_credentials=True, origins=['http://localhost:5173'])
+CORS(app, supports_credentials=True, origins=["https://real-estate-frontend-ip46.vercel.app"])
 
 @app.route('/api/estate/estimate-price', methods=['POST'])
 def predict():
