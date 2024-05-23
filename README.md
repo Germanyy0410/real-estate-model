@@ -10,7 +10,7 @@ The server is built using Flask, a lightweight WSGI web application framework, a
 ## Installation and Setup
 1. Clone the repository:
 ```bash
-git clone <repository_url>
+git clone https://github.com/Germanyy0410/real-estate-model
 ```
 2. Install dependencies:
 ```bash
@@ -18,5 +18,5 @@ pip install -r requirements.txt
 ```
 3. Run the server:
 ```bash
-python app.py
+python server.py
 ```
